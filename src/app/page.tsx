@@ -1,15 +1,19 @@
-import { Card } from '@/components/Card';
-import { EmotionAnalysisForm } from '@/components/EmotionAnalysisForm';
-import { MusicRecommendation } from '@/components/MusicRecommendation';
+import EmotionAnalysis from '@/components/EmotionAnalysis';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <Card className="w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-4">MoodMelody</h1>
-        <EmotionAnalysisForm />
-        <MusicRecommendation />
-      </Card>
+    <main className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+      <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div className="max-w-md mx-auto">
+            <h1 className="text-2xl font-semibold mb-6">
+              Emotion-based Music Recommender
+            </h1>
+            <EmotionAnalysis />
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
