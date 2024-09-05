@@ -1,16 +1,19 @@
 import axios from 'axios';
-import { Emotion, Music } from './types';
+import { AnalysisResult } from './types';
 
-const baseApi = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000',
-});
+const API_URL = 'http://localhost:8000';
 
-export async function analyzeEmotion(imageData: string): Promise<Emotion> {
-  const response = await baseApi.post('/analyze_emotion', { image: imageData });
-  return response.data.emotion;
-}
+export async function analyzeEmotion(imageBlob: Blob): Promise<AnalysisResult> {
+  const formData = new FormData();
+  formData.append('file', imageBlob, 'image.jpg');
 
-export async function getRecommendation(emotion: Emotion): Promise<Music> {
-  const response = await baseApi.get(`/recommend_music?emotion=${emotion}`);
-  return response.data;
+  const { data } = await axios.post<AnalysisResult>(
+    `${API_URL}/analyze_emotion`,
+    formData,
+    {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }
+  );
+
+  return data;
 }

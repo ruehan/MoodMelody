@@ -1,15 +1,12 @@
-export type Emotion =
-  | 'happy'
-  | 'sad'
-  | 'angry'
-  | 'neutral'
-  | 'surprise'
-  | 'fear'
-  | 'disgust';
-
-export interface Music {
-  id: string;
-  title: string;
+export interface Track {
+  name: string;
   artist: string;
-  url: string;
+  preview_url: string | null;
+  external_url: string;
+}
+
+export interface AnalysisResult {
+  emotion: string;
+  confidence: number;
+  tracks: Track[];
 }
