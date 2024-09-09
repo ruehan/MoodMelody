@@ -1,18 +1,30 @@
 import React from 'react';
+import { EmotionScores } from '@/lib/types';
 
 interface EmotionDisplayProps {
-  emotion: string;
-  confidence: number;
+  dominantEmotion: string;
+  emotionScores: EmotionScores;
 }
 
 export default function EmotionDisplay({
-  emotion,
-  confidence,
+  dominantEmotion,
+  emotionScores,
 }: EmotionDisplayProps) {
   return (
     <div className="mt-4">
-      <p className="font-semibold">Detected Emotion: {emotion}</p>
-      <p>Confidence: {(confidence * 100).toFixed(2)}%</p>
+      <p className="font-semibold text-lg">
+        Detected Emotion: {dominantEmotion}
+      </p>
+      <div className="mt-2">
+        <p className="font-medium">Emotion Scores:</p>
+        <ul className="list-disc list-inside">
+          {Object.entries(emotionScores).map(([emotion, score]) => (
+            <li key={emotion}>
+              {emotion}: {score.toFixed(2)}%
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

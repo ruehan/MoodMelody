@@ -38,8 +38,8 @@ export default function EmotionAnalysis() {
       {result && (
         <>
           <EmotionDisplay
-            emotion={result.emotion}
-            confidence={result.confidence}
+            dominantEmotion={result.dominant_emotion}
+            emotionScores={result.emotion_scores}
           />
           <MusicRecommendation tracks={result.tracks} />
         </>
